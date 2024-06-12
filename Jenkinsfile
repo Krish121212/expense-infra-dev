@@ -13,7 +13,7 @@ pipeline {
             steps {  //if you awant to write shell script,linux commands in pipeline use """
                 sh """ 
                     cd 01-VPC
-                    terraform init reconfigure 
+                    terraform init -reconfigure 
                 """
             }
         }
