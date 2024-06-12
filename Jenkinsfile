@@ -33,7 +33,7 @@ pipeline {
                 """
             }
         }
-        stage('Apply') {
+        stage('Deploy') {
             when {
                 expression{
                     params.action == 'Apply'
