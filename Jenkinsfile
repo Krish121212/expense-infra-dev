@@ -12,7 +12,8 @@ pipeline {
         stage('Init') {
             steps {  //if you awant to write shell script,linux commands in pipeline use """
                 sh """ 
-                    ls -ltr 
+                    cd 01-VPC
+                    terraform init reconfigure 
                 """
             }
         }
