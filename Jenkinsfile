@@ -21,6 +21,11 @@ pipeline {
             }
         }
         stage('plan') {
+            when {
+                expression{
+                    params.action == 'Apply'
+                }
+            }    
             steps {
                 sh """ 
                     cd 01-VPC
@@ -28,7 +33,12 @@ pipeline {
                 """
             }
         }
-        stage('Deploy') {
+        stage('Apply') {
+            when {
+                expression{
+                    params.action == 'Apply'
+                }
+            } 
             input {
                 message "Can we continue?"
                 ok "APPROVE"
@@ -40,6 +50,19 @@ pipeline {
                 """
             }
         }
+        stage('Destroy') {
+            when {
+                expression{
+                    params.action == 'Destroy'
+                }
+            }
+            steps {
+                sh """ 
+                    cd 01-VPC
+                    terraform apply -auto-destroy 
+                """
+            }
+        }   
     }
     post {//we have many posts,below are 3 among them. so posts run after build.used for trigging mails about status etc
         always { 
