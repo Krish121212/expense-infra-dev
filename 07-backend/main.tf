@@ -18,7 +18,7 @@ module "backend" {
 
 resource "null_resource" "backend" {
   triggers = {
-    instance_id = module.backend.id # this will be triggered everytime instanse is created.
+    instance_id = module.backend.id # this will be triggered everytime instance is created.
   }
 }
 
@@ -33,7 +33,7 @@ resource "null_resource" "backend" {
     source      = "${var.common_tags.Component}.sh"
     destination = "/tmp/${var.common_tags.Component}.sh"
   }
-
+  
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/${var.common_tags.Component}.sh",
@@ -160,7 +160,7 @@ resource "aws_autoscaling_policy" "backend" {
       predefined_metric_type = "ASGAverageCPUUtilization"
     }
 
-    target_value = 10.0
+    target_value = 70.0
   }
 }
 
@@ -179,4 +179,3 @@ resource "aws_lb_listener_rule" "backend" {
     }
   }
 }
-

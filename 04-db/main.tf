@@ -31,7 +31,7 @@ module "db" {
 
   manage_master_user_password = false
   password = "Krish1212"
-  skip_final_snapshot = true
+  skip_final_snapshot = true 
 
   parameters = [
     {
