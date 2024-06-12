@@ -32,6 +32,7 @@ pipeline {
     post {//we have many posts,below are 3 among them. so posts run after build.used for trigging mails about status etc
         always { 
             echo 'the steps we write here will always run after any build'
+            deleteDir()
         }
         success { 
             echo 'the steps we write here will run after only success build'
