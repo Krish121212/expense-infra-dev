@@ -8,7 +8,9 @@ pipeline {
         disableConcurrentBuilds() //Next build will wait for the previous build to get completed.
         ansiColor('xterm')
     }
-
+    parameters {
+        choice(name: 'action', choice: [ 'Apply', 'Destroy'], description: 'pick something')
+    }
     stages {
         stage('Init') {
             steps {  //if you awant to write shell script,linux commands in pipeline use """
