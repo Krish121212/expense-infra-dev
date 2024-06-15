@@ -20,7 +20,7 @@ resource "null_resource" "backend" {
   triggers = {
     instance_id = module.backend.id # this will be triggered everytime instance is created.
   }
-}
+
 
   connection {
     type      = "ssh"
@@ -40,6 +40,7 @@ resource "null_resource" "backend" {
       "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment}"
     ]
   }
+}
 
   resource "aws_ec2_instance_state" "backend" {
   instance_id = module.backend.id
