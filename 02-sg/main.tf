@@ -221,6 +221,7 @@ resource "aws_security_group_rule" "web_alb_public_https" {
   security_group_id = module.web_alb.sg_id
 }
 
+# added as a part of jenkins CICD
 resource "aws_security_group_rule" "backend_default_vpc" {
   type              = "ingress"
   from_port         = 22
