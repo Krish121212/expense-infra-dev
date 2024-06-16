@@ -20,7 +20,6 @@ resource "null_resource" "frontend" {
   triggers = {
     instance_id = module.frontend.id # this will be triggered everytime instanse is created.
   }
-}
 
   connection {
     type      = "ssh"
@@ -40,7 +39,8 @@ resource "null_resource" "frontend" {
       "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment}"
     ]
   }
-
+}
+  
   resource "aws_ec2_instance_state" "frontend" {
   instance_id = module.frontend.id
   state       = "stopped"
